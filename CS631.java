@@ -8,7 +8,7 @@ package cs631;
 
 /**
  *
- * @author agrimasthana
+ * @author Pruthvi and Ryan
  */
 public class CS631 {
 
