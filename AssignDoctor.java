@@ -1,3 +1,74 @@
+/**
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+public class AssignDoctor extends javax.swing.JFrame {
+    Connection connex;
+    PreparedStatement state;
+
+    public AssignDoctor() {
+        initComponents();
+        connex = connect.accessdb();
+        this.getContentPane().setBackground(Color.WHITE);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void initComponents() {
+        // GUI initialization code
+    }
+
+    private void bSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSubmitActionPerformed
+        // Insert data into the DOCTOR table
+        String sql = "INSERT INTO DOCTOR (SSN, SPECIALTY, BC_DATE) VALUES (?, ?, TO_DATE(?, 'YYYY-MM-DD'))";
+        try {
+            state = connex.prepareStatement(sql);
+            state.setString(1, tPatient.getText()); // Assuming SSN is entered in tPatient field
+            state.setString(2, tNurse.getText()); // Assuming SPECIALTY is entered in tNurse field
+            
+            // Convert the date format to match the database format (YYYY-MM-DD)
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String bcDate = dateFormat.format(new java.util.Date());
+            state.setString(3, bcDate); // Assuming BC_DATE is today's date
+
+            int rowsAffected = state.executeUpdate();
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Doctor assigned successfully.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to assign doctor.");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void bResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bResetActionPerformed
+        // Clear text fields
+        tDoctor.setText("");
+        tNurse.setText("");
+        tPatient.setText("");
+    }
+
+    public static void main(String args[]) {
+        // Main method
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Patient;
+    private javax.swing.JButton bReset;
+    private javax.swing.JButton bSubmit;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField tDoctor;
+    private javax.swing.JTextField tNurse;
+    private javax.swing.JTextField tPatient;
+    // End of variables declaration//GEN-END:variables
+}
+*/
 
 import java.awt.Color;
 import java.sql.Connection;
